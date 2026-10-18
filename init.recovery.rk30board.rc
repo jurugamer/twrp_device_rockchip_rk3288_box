@@ -1,0 +1,8 @@
+on early-init
+    insmod /drmboot.ko
+    insmod /rk30xxnand_ko.ko
+
+on fs
+    # Libera permissão total para a placa de vídeo HDMI
+    chmod 0666 /dev/graphics/fb0
+    chmod 0666 /dev/dri/card0
