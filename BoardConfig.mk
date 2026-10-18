@@ -62,7 +62,6 @@ VENDOR_SECURITY_PATCH := 2099-12-31
 PLATFORM_VERSION := 7.1.2
 
 # TWRP Configuration (Ajustado para TV Box / Projetor)
-TARGET_NO_KERNEL := true
 TW_THEME := landscape_hdpi
 TW_SCREEN_BLANK_ON_BOOT := false
 TW_INPUT_BLACKLIST := "hbtp_vm"
