@@ -28,22 +28,21 @@ TARGET_BOOTLOADER_BOARD_NAME := rk30sdk
 TARGET_NO_BOOTLOADER := true
 
 # Display
-TARGET_SCREEN_DENSITY := 160
+TARGET_SCREEN_DENSITY := 240
 
-# Kernel
-BOARD_KERNEL_IMAGE_NAME := Image
-TARGET_KERNEL_CONFIG := rk3288_box_defconfig
-TARGET_KERNEL_SOURCE := kernel/rockchip/rk3288_box
+# Kernel - Configurações de Boot Rockchip
+BOARD_KERNEL_CMDLINE := console=ttyFIQ0 androidboot.baseband=N/A androidboot.selinux=permissive androidboot.hardware=rk30board androidboot.console=ttyFIQ0 init=/init
+BOARD_KERNEL_BASE := 0x60000000
+BOARD_KERNEL_PAGESIZE := 2048
+BOARD_FLASH_BLOCK_SIZE := 131072
+BOARD_KERNEL_IMAGE_NAME := zImage
 
-# Kernel - prebuilt
-TARGET_FORCE_PREBUILT_KERNEL := true
-ifeq ($(TARGET_FORCE_PREBUILT_KERNEL),true)
+# Kernel - Prebuilt
 TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/kernel
-endif
 
-# Partitions
-BOARD_BOOTIMAGE_PARTITION_SIZE := 6238232
-BOARD_RECOVERYIMAGE_PARTITION_SIZE := 6238232
+# Partitions (Tamanhos calibrados do parameter.txt)
+BOARD_BOOTIMAGE_PARTITION_SIZE := 33554432
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 33554432
 BOARD_HAS_LARGE_FILESYSTEM := true
 BOARD_SYSTEMIMAGE_PARTITION_TYPE := ext4
 BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := ext4
@@ -58,16 +57,14 @@ TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
 
 # Security patch level
-VENDOR_SECURITY_PATCH := 2021-08-01
-
-# Hack: prevent anti rollback
 PLATFORM_SECURITY_PATCH := 2099-12-31
 VENDOR_SECURITY_PATCH := 2099-12-31
-PLATFORM_VERSION := 16.1.0
+PLATFORM_VERSION := 7.1.2
 
-# TWRP Configuration
-TW_THEME := portrait_hdpi
+# TWRP Configuration (Ajustado para TV Box / Projetor)
+TW_THEME := landscape_hdpi
 TW_EXTRA_LANGUAGES := true
-TW_SCREEN_BLANK_ON_BOOT := true
+TW_SCREEN_BLANK_ON_BOOT := false
 TW_INPUT_BLACKLIST := "hbtp_vm"
 TW_USE_TOOLBOX := true
+RECOVERY_GRAPHICS_FORCE_USE_LINELENGTH := true
