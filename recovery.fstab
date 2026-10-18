@@ -1,17 +1,14 @@
-# Partições de Sistema (Android 7.1 RK3288)
-/system          ext4     /dev/block/rknand_system         flags=display="System";backup=1
-/cache           ext4     /dev/block/rknand_cache          flags=display="Cache"
-/metadata        ext4     /dev/block/rknand_metadata       flags=display="Metadata"
-/data            ext4     /dev/block/rknand_userdata       flags=display="Data";backup=1
+# Sistema e Dados (eMMC mmcblk1)
+/system          ext4     /dev/block/mmcblk1p12       flags=display="System";backup=1
+/cache           ext4     /dev/block/mmcblk1p11       flags=display="Cache"
+/metadata        ext4     /dev/block/mmcblk1p13       flags=display="Metadata"
+/data            ext4     /dev/block/mmcblk1p16       flags=display="Data";backup=1
 
-# Partições de Inicialização e Firmware (Kernel e Imagens)
-/boot            emmc     /dev/block/rknand_boot           flags=display="Boot";backup=1;flashimg=1
-/recovery        emmc     /dev/block/rknand_recovery       flags=display="Recovery";backup=1;flashimg=1
-/misc            emmc     /dev/block/rknand_misc           flags=display="Misc"
-/backup          emmc     /dev/block/rknand_backup         flags=display="Backup"
-/resource        emmc     /dev/block/rknand_resource       flags=display="Resource"
-/kernel          emmc     /dev/block/rknand_kernel         flags=display="Kernel"
+# Partições de Boot e Recovery
+/boot            emmc     /dev/block/mmcblk1p8        flags=display="Boot";backup=1;flashimg=1
+/recovery        emmc     /dev/block/mmcblk1p9        flags=display="Recovery";backup=1;flashimg=1
+/misc            emmc     /dev/block/mmcblk1p3        flags=display="Misc"
 
-# Armazenamento Externo (MicroSD e Pendrive USB)
-/external_sd     vfat     /dev/block/mmcblk0p1  /dev/block/mmcblk0    flags=display="MicroSD";storage;wipeingui;removable
-/usb_otg         vfat     /dev/block/sda1       /dev/block/sda        flags=display="USB-OTG";storage;wipeingui;removable
+# Armazenamento Externo (MicroSD e USB)
+/external_sd     vfat     /dev/block/mmcblk0p1        flags=display="MicroSD";storage;wipeingui;removable
+/usb_otg         vfat     /dev/block/sda1             flags=display="USB-OTG";storage;wipeingui;removable
