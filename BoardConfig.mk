@@ -35,10 +35,10 @@ BOARD_KERNEL_CMDLINE := console=ttyFIQ0 androidboot.baseband=N/A androidboot.sel
 BOARD_KERNEL_BASE := 0x60000000
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_FLASH_BLOCK_SIZE := 131072
-#BOARD_KERNEL_IMAGE_NAME := zImage
+BOARD_KERNEL_IMAGE_NAME := zImage
 
 # Kernel - Prebuilt
-#TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/kernel
+TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/kernel
 
 # Partitions (Tamanhos calibrados do parameter.txt)
 BOARD_BOOTIMAGE_PARTITION_SIZE := 33554432
@@ -64,8 +64,13 @@ PLATFORM_VERSION := 7.1.2
 # TWRP Configuration (Ajustado para TV Box / Projetor)
 TARGET_NO_KERNEL := true
 TW_THEME := landscape_hdpi
-TW_EXTRA_LANGUAGES := true
 TW_SCREEN_BLANK_ON_BOOT := false
 TW_INPUT_BLACKLIST := "hbtp_vm"
 TW_USE_TOOLBOX := true
 RECOVERY_GRAPHICS_FORCE_USE_LINELENGTH := true
+
+# Dieta TWRP para caber na memória da TV Box
+TW_EXTRA_LANGUAGES := false
+TW_EXCLUDE_ENCRYPTED_BACKUPS := true
+TW_EXCLUDE_DEFAULT_USB_INIT := true
+LZMA_RAMDISK_TARGETS := recovery
